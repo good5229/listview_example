@@ -8,12 +8,36 @@ class CupertinoMain extends StatefulWidget{
 }
 
 class _CupertinoMain extends State<CupertinoMain>{
+  CupertinoTabBar tabBar;
+
+  @override
+  void initState(){
+    super.initState();
+    tabBar = CupertinoTabBar(items: <BottomNavigationBarItem>[
+      BottomNavigationBarItem(icon: Icon(CupertinoIcons.home)),
+      BottomNavigationBarItem(icon: Icon(CupertinoIcons.add)),
+    ]);
+  }
+
   @override
   Widget build(BuildContext context){
     return CupertinoApp(
       home: CupertinoTabScaffold(
-        tabBar: null, tabBuilder: null
-      ),
+        tabBar: tabBar, tabBuilder: (context, value){
+       if(value==0){
+         return Container(
+           child:Center(
+             child: Text('Cupertino tab 1'),
+           ),
+         );
+       } else{
+         return Container(
+           child : Center(
+             child: Text('Cupertino tab 2'),
+           ),
+         );
+       }
+      }),
     );
   }
 }
